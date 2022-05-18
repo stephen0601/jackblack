@@ -1,12 +1,13 @@
 import java.util.Scanner;
-public class JackBlack {
+public class Tsai_JackBlack {
 
+	 
 	static public int playerCounter = 0 ; 
 	static public int dealerCounter = 0 ; 
 	static public int numHands = 1 ; 
 	//sets the round to 1 and player and dealer wins to 0
 	public static void main(String[] args) {
-		System.out.println("Let's play some jackblack!");
+		System.out.println("Let's play some JackBlack!");
 		
 		System.out.println();
 		
@@ -62,7 +63,7 @@ public class JackBlack {
 		//finds the difference between the cards of the player and dealer
 		
 
-		if( player < dealer ) {
+		if( player < dealer && player > 0) {
 			playerCounter++ ;
 
 			return("You win this hand!" );
@@ -104,7 +105,9 @@ public class JackBlack {
 		}
 	}
 	public static String roundWinner() {
-		if (playerCounter > dealerCounter) {
+		System.out.println("Number of player wins: " + playerCounter);
+      System.out.println("Number of dealer wins: " + dealerCounter);
+      if (playerCounter > dealerCounter) {
 
 			return("Overall Results: You win!") ; 
 			//if the player has more wins than the dealer, the player wins the game
@@ -156,38 +159,53 @@ public class JackBlack {
 		if( hitOrNot == 1 ) { 
 			int playerNew = hit( playerDiff ) ;  // new diff is returned 
 
-			// compare   
+			  
 
 			System.out.println("Player's new hand: " + playerNew);
-			
+			//shows players new hand
 			System.out.println( winner( playerNew, dealerDiff ) ); 
-
+			//shows winner of the hand
 			
 
 		}
 		else {
 			System.out.println(winner( playerDiff, dealerDiff));
-
+			
 			System.out.println();
 
 		}
 		numHands++ ; 
+      System.out.println("Dealer's hand: " + dealerDiff); //shows the dealers hand
 	}
 	public static int hit( int oldDiff ) {
 
 		int card = (int) (Math.random() * 13) + 1 ;
 
-		int newDiff = Math.abs(oldDiff - card) ;
+		int newDiff = (oldDiff - card) ; //new diff is returned
+
+		if( newDiff < 0 ){
+			bust() ; //calls bust method if the difference is less than 0
+		}
+
 
 		System.out.println( "Your hit card is: " + card );
 
+
 		return newDiff ; 
 
+		
+
 	}
+
+	public static void bust() {
+		playerCounter-- ; //if the difference is less than 0, the player loses the hand and the counter goes down by 1
+		System.out.println("Busted! ");
+	}
+
 	public static int difference( int card1, int card2) {
-		int difference = Math.abs( card1 - card2 )  ; 
-
+		int difference = Math.abs( card1 - card2 )  ; 	
+		//finds the difference between the cards of the player and dealer
 		return difference ; 
-
+		
 	}
 }
