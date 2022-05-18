@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Tsai_JackBlack {
+public class JackBlack {
 
 	 
 	static public int playerCounter = 0 ; 
@@ -63,7 +63,7 @@ public class Tsai_JackBlack {
 		//finds the difference between the cards of the player and dealer
 		
 
-		if( player < dealer && player > 0) {
+		if( player < dealer && player >= 0 ) {
 			playerCounter++ ;
 
 			return("You win this hand!" );
@@ -84,9 +84,12 @@ public class Tsai_JackBlack {
 	
 
 	public static String winner( int player, int dealer ) {
-		if( player < dealer ) {
+		if( player < dealer && player >= 0) {
+      System.out.println("Number of player wins: " + playerCounter);
 
-			playerCounter++ ;
+		System.out.println("Number of dealer wins: " + dealerCounter);
+            
+            playerCounter++ ;
 
 			return("You win this hand!" );
 			//if the player has a lower difference than the dealer, the player wins the hand and counters goes up by 1
@@ -104,7 +107,10 @@ public class Tsai_JackBlack {
 			//if the player has a higher difference than the dealer, the player loses the hand and counters goes up by 1
 		}
 	}
-	public static String roundWinner() {
+	
+   
+   
+   public static String roundWinner() {
 		System.out.println("Number of player wins: " + playerCounter);
       System.out.println("Number of dealer wins: " + dealerCounter);
       if (playerCounter > dealerCounter) {
